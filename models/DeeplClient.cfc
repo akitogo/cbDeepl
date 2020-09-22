@@ -44,19 +44,19 @@ component hint="" accessors="true" Singleton{
 	}
 	
 	
-	/*  
+	/*
 	 * returns supported languages
 	 */
-	public array function getLanguages(
-	) {
-        var ret = ["EN"
-        ,"DE"
-        ,"FR"
-        ,"ES"
-        ,"IT"
-        ,"NL"
-        ,"PL"];
-		
+	public array function getLanguages( ) {
+		var json = sendRequest(
+			endpoint = "languages"
+		);
+		var fullResponse = deserializeJSON(json);
+		var langItem = {}; // language: The language code of the given language. name: Native name of the language.
+		var ret = [];
+		for (langItem in fullResponse) {
+			arrayAppend(ret, langItem.language);
+		}
 		return ret;
 	}
 
