@@ -25,8 +25,12 @@ component hint="" accessors="true" Singleton{
 	 */
 	public DeeplClient function init(
 		string apiKey
+		,string uri
 	) {
 		variables.apikey=apiKey;
+		if (StructKeyExists(Arguments, 'uri')) {
+			variables.uri=arguments.uri;
+		}		
 		
 		//set once supported languges
 		variables.aSupportedLanguages=getLanguages();
